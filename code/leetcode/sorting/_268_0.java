@@ -10,7 +10,7 @@ public class _268_0 {
         int i=0;
         while(i<=(n-1)){
             int correct=arr[i];
-            if(arr[i]!=arr[correct]){
+            if(correct<n && arr[i]!=arr[correct]){
                 swap(arr,i,correct);
             }
             else{
