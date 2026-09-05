@@ -1,17 +1,28 @@
-package leetcode.sorting;
-
-import java.util.Scanner;
-
-public class _287_0 {
-    public static void main(String[] args){
-        Scanner a=new Scanner(System.in);
-        System.out.println("Enter length of array to input");
-        int l=a.nextInt();
-        int[] nums=new int[l];
-        System.out.println("enter array element one by one");
-        for(int i=0;i<l;i++){
-            nums[i]=a.nextInt();
-        }
-        
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int n=cyclic(nums);
+        return n;
     }
+    static int cyclic(int[] arr){
+        int i=0;
+        int k=arr.length;
+        while(i<k){
+            if(arr[i]!=(i+1)){
+                int p=arr[i]-1;
+                if(arr[p]!=arr[i]){
+                    swap(arr,p,i);
+                }
+                else{
+                    return arr[i];
+                }
+            }
+            else{i++;}
+        }
+        return -1;
+    } 
+     static void swap(int[] arr,int first,int last){
+        int temp=arr[first];
+        arr[first]=arr[last];
+        arr[last]=temp;
+        }
 }
