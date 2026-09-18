@@ -1,1 +1,0 @@
-<h2>fair-candy-swap Notes</h2><hr>[ Time taken: 35m 9s ]
