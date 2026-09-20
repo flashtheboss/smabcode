@@ -1,41 +1,31 @@
-import java.util.*;
-
 class Solution {
     public List<Integer> luckyNumbers(int[][] matrix) {
-
-        List<Integer> ans = new ArrayList<>();
-
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-
-        for (int i = 0; i < rows; i++) {
-
-            // Step 1: Find minimum in current row
-            int minCol = 0;
-
-            for (int j = 1; j < cols; j++) {
-                if (matrix[i][j] < matrix[i][minCol]) {
-                    minCol = j;
+        ArrayList<Integer> cum=new ArrayList<>();
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(lucky(matrix,i,j)){
+                    cum.add(matrix[i][j]);
                 }
-            }
-
-            // Step 2: Check if it is maximum in its column
-            int candidate = matrix[i][minCol];
-            boolean isLucky = true;
-
-            for (int k = 0; k < rows; k++) {
-                if (matrix[k][minCol] > candidate) {
-                    isLucky = false;
-                    break;
-                }
-            }
-
-            // Step 3: Add if it is a lucky number
-            if (isLucky) {
-                ans.add(candidate);
             }
         }
-
-        return ans;
+        return cum;
+    }
+    static boolean lucky(int[][] arr,int i,int j){
+        int min=arr[i][0];
+        int max=arr[0][j];
+        for(int a=0;a<arr[0].length;a++){
+            if(arr[i][a]<min){
+                min=arr[i][a];
+            }
+        }
+         for(int b=0;b<arr.length;b++){
+            if(arr[b][j]>max){
+                max=arr[b][j];
+            }
+        }
+        if((max==arr[i][j])&&(min==arr[i][j])){
+            return true;
+        }
+        return false;
     }
 }
