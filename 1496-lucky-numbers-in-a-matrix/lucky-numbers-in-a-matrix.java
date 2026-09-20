@@ -5,32 +5,34 @@ class Solution {
 
         List<Integer> ans = new ArrayList<>();
 
-        for (int i = 0; i < matrix.length; i++) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
 
-            // Find minimum element in the row
-            int min = matrix[i][0];
-            int col = 0;
+        for (int i = 0; i < rows; i++) {
 
-            for (int j = 1; j < matrix[i].length; j++) {
-                if (matrix[i][j] < min) {
-                    min = matrix[i][j];
-                    col = j;
+            // Step 1: Find minimum in current row
+            int minCol = 0;
+
+            for (int j = 1; j < cols; j++) {
+                if (matrix[i][j] < matrix[i][minCol]) {
+                    minCol = j;
                 }
             }
 
-            // Check if it is maximum in its column
-            boolean isMax = true;
+            // Step 2: Check if it is maximum in its column
+            int candidate = matrix[i][minCol];
+            boolean isLucky = true;
 
-            for (int k = 0; k < matrix.length; k++) {
-                if (matrix[k][col] > min) {
-                    isMax = false;
+            for (int k = 0; k < rows; k++) {
+                if (matrix[k][minCol] > candidate) {
+                    isLucky = false;
                     break;
                 }
             }
 
-            // If both conditions are satisfied
-            if (isMax) {
-                ans.add(min);
+            // Step 3: Add if it is a lucky number
+            if (isLucky) {
+                ans.add(candidate);
             }
         }
 
