@@ -1,13 +1,15 @@
-import java.util.HashSet;
 class Solution {
-    public boolean checkIfPangram(String sentence) {
-        HashSet<Character> distinct = new HashSet<Character>();
-        for(int i=0;i<sentence.length();i++){
-            distinct.add(sentence.charAt(i));
+    public boolean checkIfPangram(String s) {
+        boolean[] check=new boolean[26];
+        for(int i=0;i<s.length();i++){
+            int val=s.charAt(i);
+            check[val-97]=true;
         }
-        if(distinct.size()==26){
-            return true;
+        for(int i=0;i<26;i++){
+            if(check[i]==false){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }
